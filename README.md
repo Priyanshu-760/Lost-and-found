@@ -56,11 +56,6 @@ The Lost & Found Portal boasts a range of features designed to enhance the user 
 2. **Unit Tests**: Run `test.js` in a browser or using Node.js to execute any available unit tests.
 3. **End-to-End Testing**: Manually test the website's functionality by creating posts, commenting, and using the private messaging system.
 
-## 📸 Screenshots
-[![Feed Page](https://via.placeholder.com/300x200)](https://via.placeholder.com/300x200)
-[![Home Page](https://via.placeholder.com/300x200)](https://via.placeholder.com/300x200)
-[![Profile Page](https://via.placeholder.com/300x200)](https://via.placeholder.com/300x200)
-
 ## 📦 API Reference
 Not applicable for this static website project.
 
