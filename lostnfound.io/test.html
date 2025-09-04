@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost and Found Portal - Test Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .test-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .test-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .test-button:hover {
+            background-color: #45a049;
+        }
+        
+        .test-results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .test-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .test-nav a {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        
+        .test-nav a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>Lost and Found Portal - Test Page</h1>
+            <p>Use this page to test the functionality of the Lost and Found Portal</p>
+        </div>
+        
+        <div class="test-nav">
+            <a href="index.html">Login Page</a>
+            <a href="home.html">Home Page</a>
+            <a href="feed.html">Feed Page</a>
+            <a href="status.html">Status Page</a>
+        </div>
+        
+        <div class="test-section">
+            <h3>Local Storage Tests</h3>
+            <p>Test the local storage functionality of the application</p>
+            <button class="test-button" id="testLocalStorage">Run Local Storage Tests</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>Page Loading Tests</h3>
+            <p>Test if all pages load correctly</p>
+            <button class="test-button" id="testPageLoading">Run Page Loading Tests</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>Form Validation Tests</h3>
+            <p>Test if all forms validate correctly</p>
+            <button class="test-button" id="testFormValidation">Run Form Validation Tests</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>Run All Tests</h3>
+            <p>Run all tests at once</p>
+            <button class="test-button" id="runAllTests">Run All Tests</button>
+        </div>
+        
+        <div class="test-results" id="testResults">
+            <p>Test results will appear here...</p>
+        </div>
+    </div>
+    
+    <script src="js/test.js"></script>
+    <script>
+        // Override console.log to display in the test results div
+        const originalConsoleLog = console.log;
+        console.log = function() {
+            // Call the original console.log
+            originalConsoleLog.apply(console, arguments);
+            
+            // Add to the test results div
+            const testResults = document.getElementById('testResults');
+            const message = Array.from(arguments).join(' ');
+            const p = document.createElement('p');
+            p.textContent = message;
+            testResults.appendChild(p);
+            
+            // Scroll to the bottom
+            testResults.scrollTop = testResults.scrollHeight;
+        };
+        
+        // Override console.assert to display in the test results div
+        const originalConsoleAssert = console.assert;
+        console.assert = function(condition, message) {
+            // Call the original console.assert
+            originalConsoleAssert.apply(console, arguments);
+            
+            // Add to the test results div if the condition is false
+            if (!condition) {
+                const testResults = document.getElementById('testResults');
+                const p = document.createElement('p');
+                p.textContent = 'Assertion failed: ' + message;
+                p.style.color = 'red';
+                testResults.appendChild(p);
+                
+                // Scroll to the bottom
+                testResults.scrollTop = testResults.scrollHeight;
+            }
+        };
+        
+        // Add event listeners to the test buttons
+        document.getElementById('testLocalStorage').addEventListener('click', function() {
+            clearTestResults();
+            window.testFunctions.testLocalStorage();
+        });
+        
+        document.getElementById('testPageLoading').addEventListener('click', function() {
+            clearTestResults();
+            window.testFunctions.testPageLoading();
+        });
+        
+        document.getElementById('testFormValidation').addEventListener('click', function() {
+            clearTestResults();
+            window.testFunctions.testFormValidation();
+        });
+        
+        document.getElementById('runAllTests').addEventListener('click', function() {
+            clearTestResults();
+            window.testFunctions.runTests();
+        });
+        
+        // Function to clear the test results
+        function clearTestResults() {
+            const testResults = document.getElementById('testResults');
+            testResults.innerHTML = '';
+        }
+    </script>
+</body>
+</html>

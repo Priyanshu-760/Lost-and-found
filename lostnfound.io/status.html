@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found Portal - My Applications</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/common.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Lost & Found</h2>
+                <span class="close-sidebar" id="closeSidebar">&times;</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" onclick="navigateWithTransition('home.html'); return false;"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" onclick="navigateWithTransition('feed.html'); return false;"><i class="fas fa-stream"></i> Feed</a></li>
+                <li><a href="#" onclick="navigateWithTransition('status.html'); return false;" class="active"><i class="fas fa-tasks"></i> My Applications</a></li>
+                <li><a href="#" onclick="navigateWithTransition('profile.html'); return false;"><i class="fas fa-user"></i> My Profile</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <header>
+                <div class="header-left">
+                    <span class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></span>
+                    <h1>My Applications</h1>
+                </div>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search your applications...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-info">
+                    <span id="userName">User Name</span>
+                    <img src="img/default-avatar.jpeg" alt="User Avatar" id="userAvatar">
+                </div>
+            </header>
+
+            <div class="status-container">
+                <div class="status-tabs">
+                    <button class="tab-btn active" data-tab="all">All Applications</button>
+                    <button class="tab-btn" data-tab="lost">Lost Items</button>
+                    <button class="tab-btn" data-tab="found">Found Items</button>
+                    <button class="tab-btn" data-tab="responses">Responses</button>
+                </div>
+
+                <div class="status-items" id="statusItems">
+                    <!-- Status items will be dynamically added here -->
+                    <!-- Example item structure -->
+                    <div class="status-item lost-item">
+                        <div class="item-header">
+                            <div class="item-type">LOST</div>
+                            <div class="item-date">Oct 15, 2023</div>
+                            <div class="item-status pending">Pending</div>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-image">
+                                <img src="img/placeholder.jpg" alt="Item Image">
+                            </div>
+                            <div class="item-details">
+                                <h3 class="item-title">Black Samsung Galaxy S21</h3>
+                                <p class="item-category"><i class="fas fa-tag"></i> Phone</p>
+                                <p class="item-location"><i class="fas fa-map-marker-alt"></i> Library, 2nd Floor</p>
+                                <p class="item-description">Lost my black Samsung Galaxy S21 with a blue case. Last seen in the library on the 2nd floor near the computer stations.</p>
+                            </div>
+                        </div>
+                        <div class="item-footer">
+                            <button class="btn-view-responses"><i class="fas fa-comments"></i> View Responses (0)</button>
+                            <button class="btn-edit"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="btn-delete"><i class="fas fa-trash"></i> Delete</button>
+                        </div>
+                    </div>
+
+                    <div class="status-item found-item">
+                        <div class="item-header">
+                            <div class="item-type">FOUND</div>
+                            <div class="item-date">Oct 16, 2023</div>
+                            <div class="item-status has-responses">Responses (2)</div>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-image">
+                                <img src="img/placeholder.jpg" alt="Item Image">
+                            </div>
+                            <div class="item-details">
+                                <h3 class="item-title">Calculator (TI-84)</h3>
+                                <p class="item-category"><i class="fas fa-tag"></i> Calculator</p>
+                                <p class="item-location"><i class="fas fa-map-marker-alt"></i> Science Building, Room 203</p>
+                                <p class="item-description">Found a TI-84 calculator in the Science Building, Room 203 after the Calculus class. It has some stickers on the back.</p>
+                            </div>
+                        </div>
+                        <div class="item-footer">
+                            <button class="btn-view-responses"><i class="fas fa-comments"></i> View Responses (2)</button>
+                            <button class="btn-edit"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="btn-delete"><i class="fas fa-trash"></i> Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                    <span class="page-info">Page 1 of 1</span>
+                    <button class="page-btn" disabled><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Responses Modal -->
+    <div id="responsesModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close">&times;</span>
+            <h2>Responses</h2>
+            <div id="itemDetailsForResponses" class="response-item-details">
+                <!-- Item details will be dynamically added here -->
+            </div>
+            <div class="responses-list" id="responsesList">
+                <!-- Responses will be dynamically added here -->
+                <!-- Example response structure -->
+                <div class="response-item">
+                    <div class="response-header">
+                        <div class="response-user">John Doe</div>
+                        <div class="response-date">Oct 17, 2023</div>
+                    </div>
+                    <div class="response-content">
+                        <p>I think I saw this calculator in the Math tutoring center. It might have been turned in there. You should check with them.</p>
+                    </div>
+                    <div class="response-footer">
+                        <div class="response-contact">
+                            <span><i class="fas fa-phone"></i> 555-111-2222</span>
+                            <span><i class="fas fa-envelope"></i> john.doe@example.com</span>
+                        </div>
+                        <button class="btn-reply"><i class="fas fa-reply"></i> Reply</button>
+                    </div>
+                </div>
+
+                <div class="response-item">
+                    <div class="response-header">
+                        <div class="response-user">Jane Smith</div>
+                        <div class="response-date">Oct 18, 2023</div>
+                    </div>
+                    <div class="response-content">
+                        <p>I think this is my calculator. It has a small scratch on the screen and my initials (JS) on the back. Can we meet to verify?</p>
+                    </div>
+                    <div class="response-footer">
+                        <div class="response-contact">
+                            <span><i class="fas fa-phone"></i> 555-333-4444</span>
+                            <span><i class="fas fa-envelope"></i> jane.smith@example.com</span>
+                        </div>
+                        <button class="btn-reply"><i class="fas fa-reply"></i> Reply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Item Modal -->
+    <div id="editItemModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close">&times;</span>
+            <h2>Edit Item</h2>
+            <form id="editItemForm">
+                <!-- Form fields will be dynamically populated based on item type -->
+            </form>
+        </div>
+    </div>
+    <script src="js/status.js"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found Portal - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/common.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Lost & Found</h2>
+                <span class="close-sidebar" id="closeSidebar">&times;</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" onclick="navigateWithTransition('home.html'); return false;" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" onclick="navigateWithTransition('feed.html'); return false;"><i class="fas fa-stream"></i> Feed</a></li>
+                <li><a href="#" onclick="navigateWithTransition('status.html'); return false;"><i class="fas fa-tasks"></i> My Applications</a></li>
+                <li><a href="#" onclick="navigateWithTransition('profile.html'); return false;"><i class="fas fa-user"></i> My Profile</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <header>
+                <div class="header-left">
+                    <span class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></span>
+                    <h1>Home</h1>
+                </div>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search for items...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                    <div class="filter-dropdown">
+                        <button class="filter-btn"><i class="fas fa-filter"></i></button>
+                        <div class="filter-content">
+                            <label><input type="checkbox" value="calculator"> Calculator</label>
+                            <label><input type="checkbox" value="phone"> Phone</label>
+                            <label><input type="checkbox" value="notebook"> Notebook</label>
+                            <label><input type="checkbox" value="pens"> Pens</label>
+                            <label><input type="checkbox" value="earphones"> Earphones</label>
+                            <label><input type="checkbox" value="charger"> Charger</label>
+                            <label><input type="checkbox" value="other"> Other</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <span id="userName">User Name</span>
+                    <img src="img/default-avatar.jpeg" alt="User Avatar" id="userAvatar">
+                </div>
+            </header>
+
+            <div class="home-sections">
+                <!-- Lost Item Report Section -->
+                <section class="home-section" id="lostItemSection">
+                    <div class="section-header">
+                        <h2><i class="fas fa-search"></i> Lost Item Report</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>Report an item you've lost on campus. Fill out the form with as much detail as possible to help others identify your item.</p>
+                        <button class="btn-primary" id="lostItemBtn">Report Lost Item</button>
+                    </div>
+                </section>
+
+                <!-- Found Item Report Section -->
+                <section class="home-section" id="foundItemSection">
+                    <div class="section-header">
+                        <h2><i class="fas fa-hand-holding"></i> Found Item Report</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>Report an item you've found on campus. Your honesty helps reconnect people with their lost belongings.</p>
+                        <button class="btn-primary" id="foundItemBtn">Report Found Item</button>
+                    </div>
+                </section>
+
+                <!-- Application Status Section -->
+                <section class="home-section" id="statusSection">
+                    <div class="section-header">
+                        <h2><i class="fas fa-clipboard-check"></i> Application Status</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>Track the status of your lost and found reports. See if someone has responded to your reports.</p>
+                        <button class="btn-primary" id="checkStatusBtn">Check Status</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lost Item Modal -->
+    <div id="lostItemModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close">&times;</span>
+            <h2>Report Lost Item</h2>
+            <form id="lostItemForm">
+                <div class="form-group">
+                    <label for="lostTitle">Title</label>
+                    <input type="text" id="lostTitle" name="lostTitle" placeholder="e.g., Lost Black Smartphone" required>
+                </div>
+                <div class="form-group">
+                    <label for="lostCategory">Category</label>
+                    <select id="lostCategory" name="lostCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="calculator">Calculator</option>
+                        <option value="phone">Phone</option>
+                        <option value="notebook">Notebook</option>
+                        <option value="pens">Pens</option>
+                        <option value="earphones">Earphones</option>
+                        <option value="charger">Charger</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lostDescription">Description</label>
+                    <textarea id="lostDescription" name="lostDescription" placeholder="Provide detailed description of the item..." required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="lostDate">Date Lost</label>
+                        <input type="date" id="lostDate" name="lostDate" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="lostLocation">Location</label>
+                        <input type="text" id="lostLocation" name="lostLocation" placeholder="e.g., Library, 2nd floor" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lostImage">Add Image (Optional)</label>
+                    <input type="file" id="lostImage" name="lostImage" accept="image/*">
+                    <div id="imagePreview" class="image-preview"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="lostPhone">Phone Number</label>
+                        <input type="tel" id="lostPhone" name="lostPhone" placeholder="Your contact number" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="lostEmail">Email</label>
+                        <input type="email" id="lostEmail" name="lostEmail" placeholder="Your email address" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn-submit">Submit Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Found Item Modal -->
+    <div id="foundItemModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close">&times;</span>
+            <h2>Report Found Item</h2>
+            <form id="foundItemForm">
+                <div class="form-group">
+                    <label for="foundTitle">Title</label>
+                    <input type="text" id="foundTitle" name="foundTitle" placeholder="e.g., Found Black Smartphone" required>
+                </div>
+                <div class="form-group">
+                    <label for="foundCategory">Category</label>
+                    <select id="foundCategory" name="foundCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="calculator">Calculator</option>
+                        <option value="phone">Phone</option>
+                        <option value="notebook">Notebook</option>
+                        <option value="pens">Pens</option>
+                        <option value="earphones">Earphones</option>
+                        <option value="charger">Charger</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="foundDescription">Description</label>
+                    <textarea id="foundDescription" name="foundDescription" placeholder="Provide detailed description of the item..." required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="foundDate">Date Found</label>
+                        <input type="date" id="foundDate" name="foundDate" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="foundLocation">Location</label>
+                        <input type="text" id="foundLocation" name="foundLocation" placeholder="e.g., Library, 2nd floor" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="foundImage">Add Image (Optional)</label>
+                    <input type="file" id="foundImage" name="foundImage" accept="image/*">
+                    <div id="imagePreviewFound" class="image-preview"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="foundPhone">Phone Number</label>
+                        <input type="tel" id="foundPhone" name="foundPhone" placeholder="Your contact number" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="foundEmail">Email</label>
+                        <input type="email" id="foundEmail" name="foundEmail" placeholder="Your email address" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn-submit">Submit Report</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/home.js"></script>
+</body>
+</html>

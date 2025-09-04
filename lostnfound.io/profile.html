@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found Portal - My Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/common.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Lost & Found</h2>
+                <span class="close-sidebar" id="closeSidebar">&times;</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" onclick="navigateWithTransition('home.html'); return false;"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" onclick="navigateWithTransition('feed.html'); return false;"><i class="fas fa-stream"></i> Feed</a></li>
+                <li><a href="#" onclick="navigateWithTransition('status.html'); return false;"><i class="fas fa-tasks"></i> My Applications</a></li>
+                <li><a href="#" onclick="navigateWithTransition('profile.html'); return false;" class="active"><i class="fas fa-user"></i> My Profile</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <header>
+                <div class="header-left">
+                    <span class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></span>
+                    <h1>My Profile</h1>
+                </div>
+                <div class="user-info">
+                    <span id="userName">User Name</span>
+                    <img src="img/default-avatar.jpeg" alt="User Avatar" id="userAvatar">
+                </div>
+            </header>
+
+            <div class="profile-container">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <h2><i class="fas fa-user-circle"></i> Profile Information</h2>
+                    </div>
+                    <div class="profile-content">
+                        <div class="profile-image-container">
+                            <img src="img/default-avatar.jpeg" alt="Profile Image" id="profileImage">
+                            <div class="image-upload">
+                                <label for="profileImageUpload" class="btn-upload"><i class="fas fa-camera"></i> Change Photo</label>
+                                <input type="file" id="profileImageUpload" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+                        <form id="profileForm">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Your email address" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Your phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="department">Department</label>
+                                <select id="department" name="department">
+                                    <option value="">Select your department</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Arts">Arts</option>
+                                    <option value="Science">Science</option>
+                                    <option value="Medicine">Medicine</option>
+                                    <option value="Law">Law</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" name="bio" placeholder="Tell us about yourself" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">New Password (leave blank to keep current)</label>
+                                <input type="password" id="password" name="password" placeholder="New password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password">
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">Save Changes</button>
+                                <button type="reset" class="btn-secondary">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>
